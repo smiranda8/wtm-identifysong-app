@@ -1,0 +1,5 @@
+<app-loading *ngIf="loadingArtist"></app-loading>
+
+<app-tarjeta-artista *ngIf="loadingArtist" [item]="artist"></app-tarjeta-artista>
+
+<app-tarjeta-cancion></app-tarjeta-cancion>

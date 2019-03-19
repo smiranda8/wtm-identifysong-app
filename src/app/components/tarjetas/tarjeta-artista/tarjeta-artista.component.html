@@ -1,0 +1,8 @@
+
+<div class="card w-75">
+    <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{item.bio.summary }}</p> <!--TODO: hacer un pipe para que sepa tratar el html del contenido-->
+        <img  class="img-thumbnail" [src]="item.image[3]['#text']"  alt="Card image cap">
+    </div>
+</div>
