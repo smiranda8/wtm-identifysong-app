@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
+## Antes de arrancar
+Teneis que hacer un npm install, que no subi la carpeta del node modules. Y luego podeis arrancarlo pero ahora mismo no va funcionar por el nuevo servicio que hicimos identify.service.ts, tiene un TODO puesto.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
