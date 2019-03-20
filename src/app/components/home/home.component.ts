@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LastfmService } from '../../services/lastfm.service';
-import { IdentifyService } from 'src/app/service/identify.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +11,7 @@ export class HomeComponent {
   nuevasCanciones: any[] = [];
   loading: boolean;
 
-  constructor( private lastfm: LastfmService, private iden: IdentifyService) {
+  constructor( private lastfm: LastfmService) {
     this.loading = true;
     this.lastfm.getTopTracks()
       .subscribe( (data: any) => {

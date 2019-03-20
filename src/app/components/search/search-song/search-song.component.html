@@ -2,5 +2,9 @@
     <div class="col">
         <!-- <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar artista...">   -->
       <input type="text" class="form-control" placeholder="Buscar canción...">
+      <button (click)="identificarCancion()">Click</button>
+
+      <input type="file" (change)="onChange($event.target.files)">
+      {{fileContent}}
     </div>
   </div>
