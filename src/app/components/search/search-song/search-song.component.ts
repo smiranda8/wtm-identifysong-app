@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IdentifyService } from '../../../services/identify.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-song',
@@ -8,13 +9,32 @@ import { IdentifyService } from '../../../services/identify.service';
 })
 export class SearchSongComponent {
 
-  require: any;
-  fs: any;
+  /* require: any;
+  fs: any;*/
   fileContent: any;
+  user = { id : 1, name : 'Hello'};
+  headers = new HttpHeaders()
+  .set('Content-Type', 'application/json')
+  .set('Access-Control-Allow-Headers', 'Content-Type');
 
-  constructor(private iden: IdentifyService) { }
+  constructor(private http: HttpClient) { }
 
-  identificarCancion() {
+  public callServer(dataFile: any) {
+    console.log('dataFile -> ' + dataFile);
+    const dataPost = {
+      param : dataFile
+    };
+    console.log('dataPost ' + dataPost);
+    this.http.post('http://127.0.0.1:3000/identify', dataPost, {
+      headers: this.headers,
+      observe: 'response'
+    })
+    .subscribe(data => {
+      console.log('resupesta identify ->' + JSON.stringify(data));
+    });
+  }
+
+ /* identificarCancion() {
     const fileReader: FileReader = new FileReader();
     const blob = new Blob([`./342161552914591-sort.wav`], { type: 'audio/x-wav' });
     console.log(fileReader.readAsBinaryString(blob));
@@ -41,15 +61,21 @@ export class SearchSongComponent {
    //   console.log(body);
    //  });
 
-  }
+  }*/
   public onChange(fileList: FileList): void {
-    const file = fileList[0];
-    const fileReader: FileReader = new FileReader();
-
+    // tslint:disable-next-line:prefer-const
+    let file = fileList[0];
+    // tslint:disable-next-line:prefer-const
+    let fileReader: FileReader = new FileReader();
+    // tslint:disable-next-line:prefer-const
+    let self = this;
     // tslint:disable-next-line:only-arrow-functions
     fileReader.onloadend = function(x) {
-      this.fileContent = fileReader.result;
+      self.fileContent = fileReader.result as string;
+      self.callServer(self.fileContent);
+      console.log('Se hace la llamada al service identify');
     };
+
     console.log(fileReader.readAsText(file));
   }
 }
