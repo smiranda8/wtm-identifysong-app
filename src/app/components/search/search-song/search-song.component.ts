@@ -31,7 +31,7 @@ export class SearchSongComponent {
       observe: 'response'
     })
       .subscribe(data => {
-        console.log('resupesta identify ->' + JSON.stringify(data));
+        console.log('respuesta identify ->' + JSON.stringify(data));
       });
   }
 
@@ -45,13 +45,17 @@ export class SearchSongComponent {
     // tslint:disable-next-line:only-arrow-functions
     fileReader.onloadend = function(x) {
       self.fileContent = fileReader.result as string;
-      self.callServer(self.fileContent);
-      //self.callServer(fileReader.readAsText(file));
-      console.log('Se hace la llamada al service identify');
+     // self.callServer(self.fileContent);
+    //TO DO : recoger dinámicamente la url del audio que se grabe.
+     self.callServer("342161552914591-sort.wav");      
+     console.log('Se hace la llamada al service identify');
     };
 
     console.log(fileReader.readAsText(file));
   }
+
+
+
 
 //Implementación nueva
 
